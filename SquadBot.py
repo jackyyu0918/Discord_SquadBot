@@ -146,13 +146,19 @@ async def on_message(message):
         await message.channel.send(file=discord.File('chung.gif'))
 
     elif message.content.startswith("!checkNade"):
-        map = message.content.strip('!checkNade').strip()
+        map = message.content.strip('!checkNade').strip().lower()
+
+        list_map = ['Mirage', 'Inferno', 'Dust2', 'Overpass', 'Nuke', 'Vertigo', 'Ancient', 'Cache', 'Train']
 
         if map == '':
             await message.channel.send("https://www.csgonades.com/")
         else:
-            await message.channel.send(
-                'CSGO nade tutorial for map ' + map + ':\n' + str("https://www.csgonades.com/maps/", map))
+            if map not in [x.lower() for x in list_map]:
+                warning_message = 'Please provide correct map name:\n' + str(list_map)
+                await message.channel.send(warning_message)
+            else:
+                map = 'CSGO nade tutorial for map ' + map + ':\n https://www.csgonades.com/maps/' + map
+                await message.channel.send(map)
 
     elif message.content == "!help":
         await message.channel.send(
@@ -200,5 +206,5 @@ def list_Team_str(team_queue: list) -> str:
     return queueMessage
 
 
-token = getToken()
+token = get_token()
 client.run(token)
