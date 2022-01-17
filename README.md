@@ -4,4 +4,4 @@ A powerful discord bot for forming team.
 
 # Developer
 
-Jacky Ya
+Jacky Yu
