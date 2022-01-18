@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import discord
 import os
 import requests
@@ -6,6 +8,7 @@ import random
 
 client = discord.Client()
 cs_queue = list()
+timer: datetime = None
 
 
 def get_token() -> str:
@@ -24,9 +27,9 @@ def get_stock_api_key() -> str:
 
 @client.event
 async def on_message(message):
-    print(message.author.name + " :" + message.content)
+    print(message.author.name + ": " + message.content)
 
-    if message.content == "!helloFatBoy":
+    if message.content == "!helloDerek":
         concat_str = "```Hello " + message.author.name + ".\nType !help to get info of " \
                                                          "the avalible command.``` "
         await message.channel.send(concat_str)
@@ -42,12 +45,16 @@ async def on_message(message):
                     return
 
             cs_queue.append([message.author.id, message.author.name])
-            await message.channel.send(list_Team_str(cs_queue))
             await message.channel.send("**" + message.author.name + "** has join the team!")
+            await message.channel.send(list_Team_str(cs_queue))
+
+            if len(cs_queue == 1):
+                timer = datetime.now()
 
             if len(cs_queue) == 5:
                 await message.channel.send(
-                    'The team is full, no bullshit let\'s go  <:bighead:919980311960490014> <:bighead:919980311960490014>')
+                    'The team is full, no bullshit let\'s go  <:bighead:919980311960490014> <:bighead:919980311960490014>\n'
+                    'It takes ')
                 await message.channel.send(file=discord.File('chung.gif'))
 
     elif message.content == "!listTeam":
@@ -164,7 +171,7 @@ async def on_message(message):
         await message.channel.send(
             "```User Manual:\n"
             "!help: Get help from me\n"
-            "!helloFatBoy: Greeting\n"
+            "!helloDerek: Greeting\n"
             "!joinTeam: Join the team queue\n"
             "!listTeam: Show the current team list\n"
             "!quitTeam: Quit the current team you are joining\n"
