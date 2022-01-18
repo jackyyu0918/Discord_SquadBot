@@ -18,3 +18,5 @@ Python 3.7 and latest Discord.py module is required.
 Jacky Yu
 
 Johnny Pang
+
+Eric Chan
