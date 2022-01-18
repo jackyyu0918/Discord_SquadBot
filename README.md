@@ -16,4 +16,5 @@ Python 3.7 and latest Discord.py module is required.
 # Developer
 
 Jacky Yu
+
 Johnny Pang
