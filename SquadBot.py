@@ -153,7 +153,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('chung.gif'))
 
     elif message.content.startswith("!checkNade"):
-        map = message.content.strip('!checkNade').strip().lower()
+        map = message.content.replace('!checkNade ', '').lower()
 
         list_map = ['Mirage', 'Inferno', 'Dust2', 'Overpass', 'Nuke', 'Vertigo', 'Ancient', 'Cache', 'Train']
 
