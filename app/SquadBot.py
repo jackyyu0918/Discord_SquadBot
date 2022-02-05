@@ -50,7 +50,7 @@ async def on_message(message):
             await message.channel.send("**" + message.author.name + "** has join the team!")
             await message.channel.send(list_Team_str(cs_queue))
 
-            if len(cs_queue == 1):
+            if len(cs_queue) == 1:
                 timer = datetime.now()
 
             if len(cs_queue) == 5:
